@@ -4,6 +4,7 @@ export { default as SlipGaji } from './SlipGaji';
 export { default as Departemen } from './Departemen';
 export { default as Karyawan } from './Karyawan';
 export { default as Penugasan } from './Penugasan';
+export { default as Login } from './Login';
 export { default as Ecommerce } from './Ecommerce';
 export { default as Kanban } from './Kanban';
 export { default as Orders } from './Orders';

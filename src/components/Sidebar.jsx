@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -9,6 +9,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import UserProfile from "../components/UserProfile";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 
@@ -74,7 +75,14 @@ const Sidebar = () => {
               ))}
             </div>
           </div>
-          <NavLink to="/" onClick={handleCloseSideBar} className={normalLink}>
+          <NavLink
+            to="/login"
+            onClick={() => {
+              localStorage.removeItem("user");
+              location.href = "/login";
+            }}
+            className={normalLink}
+          >
             <MdLogout />
             <span className="capitalize ">Logout</span>
           </NavLink>
