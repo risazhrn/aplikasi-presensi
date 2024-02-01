@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { login as loginService } from "../services/auth";
 
 function login() {
-  const [username, setUsername] = useState("");
+  const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
     try {
-      await loginService(username, password);
+      await loginService(email, password);
       location.href = "/dashboard";
     } catch (err) {
       setError(err.response.data.message);
@@ -23,17 +23,17 @@ function login() {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
+            htmlFor="email"
           >
-            Username
+            Email
           </label>
           <input
-            type="text"
-            id="username"
+            type="email"
+            id="email"
             className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-            placeholder="Masukkan username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Masukkan email"
+            value={email}
+            onChange={(e) => setemail(e.target.value)}
           />
         </div>
         <div className="mb-6">
