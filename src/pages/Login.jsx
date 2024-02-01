@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-
-const API_URL = "http://localhost:5000";
+import { login as loginService } from "../services/auth";
 
 function login() {
   const [username, setUsername] = useState("");
@@ -10,12 +8,8 @@ function login() {
 
   const handleLogin = async () => {
     try {
-      const user = (await axios.post(API_URL + "/auth/login", {
-        username,
-        password,
-      })).data;
-      localStorage.setItem("user", JSON.stringify(user.data));
-      location.href = '/dashboard'
+      await loginService(username, password);
+      location.href = "/dashboard";
     } catch (err) {
       setError(err.response.data.message);
     }

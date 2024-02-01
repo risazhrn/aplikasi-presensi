@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 
 import { Button } from '.';
@@ -8,6 +8,12 @@ import avatar from '../data/avatar.jpg';
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem('user'))||{}
+    setUser(localUser)
+  },[])
 
   return (
     <div className="nav-item right-1 top-16 bg-white dark:bg-[#42464D] p-4 rounded-lg w-full">
@@ -23,14 +29,14 @@ const UserProfile = () => {
       </div> */}
       <div className="flex gap-5 items-center border-color border-b-1 pb-6">
         <img
-          className="rounded-full h-24 w-24"
+          className="rounded-full h-16 w-16"
           src={avatar}
           alt="user-profile"
         />
         <div>
-          <p className="font-semibold text-xl dark:text-gray-200"> Michael Roberts </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@shop.com </p>
+          <p className="font-semibold text-sm dark:text-gray-200">{user.firstName} {user.lastName}</p>
+          <p className="text-gray-500 text-xs dark:text-gray-400">{user.authority}</p>
+          <p className="text-gray-500 text-xs font-semibold dark:text-gray-400">{user.email}</p>
         </div>
       </div>
       {/* <div>
